@@ -22,6 +22,12 @@ $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 py
 $XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
 ```
 
+Playground:
+```python
+$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
+```
+
+
 ## Environment variables
 
 * `XUNTER_PRINTER` - `stack` or `call`. Default `stack`.
@@ -33,11 +39,6 @@ Stack printer:
 Call printer:
 * `XUNTER_SHOW_CODE` - Show function code. Default `False`.
 
-## Playground
-
-```python
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
-```
 
 ## Convert log to table
 
