@@ -39,7 +39,7 @@ Call printer:
 $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
 ```
 
-## Log to excel
+## Convert log to table
 
 ```python
 $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=20 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print(123)" e> /tmp/xunter.log
