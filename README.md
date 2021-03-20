@@ -1,6 +1,5 @@
-Profiling for the xonsh shell based on hunter.
 <p align="center">
-<b>xunter</b> - profiling for <a href="https://xon.sh">the xonsh shell</a> based on <a href="https://github.com/ionelmc/python-hunter">hunter</a>.
+<b>xunter</b> is to profiling <a href="https://xon.sh">the xonsh shell</a> using <a href="https://github.com/ionelmc/python-hunter">hunter</a>.
 </p>
 
 <p align="center">  
