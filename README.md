@@ -48,3 +48,6 @@ log_to_excel.py /tmp/xunter.log
 xdg-open /tmp/xunter.log.xlsx
 ```
 
+## Known issues
+
+If you see the errors try to install xonsh from main branch first.
