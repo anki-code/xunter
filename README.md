@@ -37,7 +37,7 @@ Call printer:
 ## Playground
 
 ```python
-$XUNTER_DEPTH_LT=5 python profile_playground.py
+$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
 ```
 
 ## Log to excel
