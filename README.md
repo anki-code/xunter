@@ -48,6 +48,10 @@ log_to_excel.py /tmp/xunter.log
 xdg-open /tmp/xunter.log.xlsx
 ```
 
+## Investigations
+
+By putting `import ipdb; ipdb.set_trace()` in the any place of code you can investigate the environment interactively.
+
 ## Known issues
 
 If you see the unexpected exceptions try to install xonsh from the main branch first.
