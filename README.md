@@ -8,22 +8,22 @@ If you like the idea click ⭐ on the repo and <a href="https://twitter.com/inte
 
 ## Install
 
-```python
+```xsh
 git clone https://github.com/anki-code/xunter 
 cd xunter
-pip install -r requirements.txt
+xpip install -r requirements.txt
 ```
 
 ## Usage
 
 Run profiling:
-```python
+```xsh
 $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
 $XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
 ```
 
 Playground:
-```python
+```xsh
 $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
 ```
 
