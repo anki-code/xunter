@@ -18,13 +18,16 @@ xpip install -r requirements.txt
 
 Run profiling:
 ```xsh
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
-$XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
+import sys
+aliases['xpython'] = sys.executable  # Python that used to run current xonsh session.
+
+$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
+$XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
 ```
 
 Playground:
 ```xsh
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 python profile_playground.py
+$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 xpython profile_playground.py
 ```
 
 
@@ -43,7 +46,7 @@ Call printer:
 ## Convert log to table
 
 ```python
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=20 $XONSH_DEBUG=1 python profile_xonsh.py --no-rc -c "print(123)" e> /tmp/xunter.log
+$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=20 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print(123)" e> /tmp/xunter.log
 log_to_excel.py /tmp/xunter.log
 xdg-open /tmp/xunter.log.xlsx
 ```
