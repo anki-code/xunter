@@ -18,8 +18,7 @@ xpip install -r requirements.txt
 
 Run profiling:
 ```xsh
-import sys
-aliases['xpython'] = sys.executable  # Python that used to run current xonsh session.
+aliases['xpython'] = __import__('sys').executable  # Python that used to run current xonsh session.
 
 $XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
 $XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
