@@ -22,6 +22,9 @@ xunter --help
 xunter --no-rc -c "2+2" ++depth-lt 5
 #      ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^
 #            xonsh         xunter
+
+# Feel free to run interactive session:
+xunter --no-rc ++depth-lt 5
 ```
 
 ## Convert log to table
