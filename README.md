@@ -1,5 +1,5 @@
 <p align="center">
-<b>xunter</b> is to profiling <a href="https://xon.sh">the xonsh shell</a> using <a href="https://github.com/ionelmc/python-hunter">hunter</a>.
+<b>xunter</b> is to profiling <a href="https://xon.sh">xonsh shell</a> using <a href="https://github.com/ionelmc/python-hunter">hunter</a>. Time tracking is on board.
 </p>
 
 <p align="center">  
