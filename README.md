@@ -8,46 +8,27 @@ If you like the idea click ⭐ on the repo and <a href="https://twitter.com/inte
 
 ## Install
 
+Install xunter into the environment where xonsh you want to trace resides.
+
 ```xsh
-git clone https://github.com/anki-code/xunter 
-cd xunter
-xpip install -r requirements.txt
+pip install git+https://github.com/anki-code/xunter
 ```
 
 ## Usage
 
-Run profiling:
+Xunter is working as drop-in replacement of `xonsh` with additional arguments:
 ```xsh
-aliases['xpython'] = __import__('sys').executable  # Python that used to run current xonsh session.
-
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 $XUNTER_MIN_SEC=1.5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
-$XUNTER_PRINTER='call' $XUNTER_DEPTH_LT=5 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print('Catch Me If You Can')"
+xunter --help
+xunter --no-rc -c "2+2" ++depth-lt 5
+#      ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^
+#            xonsh         xunter
 ```
-
-Playground:
-```xsh
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=5 xpython profile_playground.py
-```
-
-
-## Environment variables
-
-* `XUNTER_PRINTER` - `stack` or `call`. Default `stack`.
-* `XUNTER_DEPTH_LT` - Maximum depth of call stack. Default `5`. 
-
-Stack printer:
-* `XUNTER_MIN_SEC` - Minimal amount of function execution time in seconds to show call stack. Default `0.0`.
-
-Call printer:
-* `XUNTER_SHOW_CODE` - Show function code. Default `False`.
-
 
 ## Convert log to table
 
 ```python
-$XUNTER_PRINTER='stack' $XUNTER_DEPTH_LT=20 $XONSH_DEBUG=1 xpython profile_xonsh.py --no-rc -c "print(123)" e> /tmp/xunter.log
-log_to_excel.py /tmp/xunter.log
-xdg-open /tmp/xunter.log.xlsx
+xunter --no-rc -c "2+2" ++depth 10 ++output /tmp/22.xunter
+xunter2excel /tmp/22.xunter
 ```
 
 ## Investigations
@@ -57,3 +38,7 @@ By putting `import ipdb; ipdb.set_trace()` in the any place of code you can inve
 ## Known issues
 
 If you see the unexpected exceptions try to install xonsh from the main branch first.
+
+## See also
+
+* [xonsh-install](https://github.com/anki-code/xonsh-install)

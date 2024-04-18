@@ -1,3 +1,5 @@
+#!/usr/bin/env xonsh
+
 import pandas as pd
 
 stack_log_file = $ARG1

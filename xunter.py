@@ -34,6 +34,7 @@ class CallPrinterProfile(CodePrinter):
     EVENT_COLORS = CALL_COLORS
 
     locals = defaultdict(list)
+    output_filepath = None
 
     @classmethod
     def cleanup(cls):
@@ -43,6 +44,9 @@ class CallPrinterProfile(CodePrinter):
         # <profile>
         self.timings = {}
         # </profile>
+
+        if self.output_filepath:
+            args['stream'] = open(self.output_filepath, 'w')
 
         super(CallPrinterProfile, self).__init__(*args, **kwargs)
 
@@ -189,12 +193,17 @@ class StackPrinterProfile(ColorStreamAction):
             If string must be one of 'repr' or 'safe_repr'. Default: ``'safe_repr'``.
     """
 
+    output_filepath = None
+
     def __init__(self, depth=15, limit=2, **options):
         self.limit = limit
         self.depth = depth
         # <profile>
         self.timings = {}
         # </profile>
+
+        if self.overwrite_stream:
+            options['stream'] = self.overwrite_stream
 
         super(StackPrinterProfile, self).__init__(**options)
 
