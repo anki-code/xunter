@@ -1,16 +1,22 @@
-import os
-from hunter import trace
+from hunter import trace, Q
 from xunter import CallPrinterProfile, StackPrinterProfile
 
+# action=CallPrinterProfile
+action = StackPrinterProfile
+
+filters = (
+    Q(depth_lt=3),
+)
+
 trace(
-    depth_lt=int(os.environ.get('XUNTER_DEPTH_LT', 20)),
+    *filters,
     stdlib=False,
-    #action=CallPrinterProfile
-    action=StackPrinterProfile
+    action=action
 )
 
 
-
 if __name__ == '__main__':
+    print('start')
     from aaa.bbb import b
     b(2)
+    print('done')
