@@ -6,15 +6,17 @@ from hunter import trace
 from xunter import CallPrinterProfile, StackPrinterProfile
 
 def xunter_help():
-    print('Xunter was made for tracing xonsh via hunter.')
-    print('Example: xunter --no-rc -c "2+2" ++depth 10 ++output /tmp/22.xunter')
+    print('Xunter was made for tracing xonsh via python-hunter.')
+    print('Example: xunter --no-rc -c "2+2" ++depth 10')
+    print('Example: xunter --no-rc ++depth 5 ++output /tmp/22.xunter')
+    print('Example: xunter --no-rc ++stdlib ++depth-lt 5 ++output stdout')
     print()
 
 def argparse_xunter():
     parser = argparse.ArgumentParser(prefix_chars='-+')
+    parser.add_argument('++depth-lt', required=True, help='Trace depth. Start from 5.')
     parser.add_argument('++printer', default='stack', help="Printer: `stack` or `call`. Default: `stack`.")
-    parser.add_argument('++depth-lt', default=5, help='Trace depth. Default: 5.')
-    parser.add_argument('++stdlib', default=False, action='store_true', help='Trace stdlib. Default: no.')
+    parser.add_argument('++stdlib', action='store_true', help='Trace stdlib. Default: no.')
     parser.add_argument('++output', default='stderr', help='Output: `stdout`, `stderr` or filepath. Default: `stderr`.')
     # See also: ('function', 'module', 'lineno', 'globals', 'stdlib', 'arg', 'locals', 'kind', 'filename', 'source', 'fullsource', 'threadname', 'threadid', 'instruction', 'depth', 'calls', 'builtin').
     # Source: https://python-hunter.readthedocs.io/en/latest/filtering.html
