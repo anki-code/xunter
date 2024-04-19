@@ -74,7 +74,14 @@ xunter --no-rc  ++filter @(','.join(filters)) ++output /tmp/1.xunter
 tail -f /tmp/1.xunter  # | grep -i func
 ```
 
-## Convert log to table
+#### Time profiling
+
+```xsh
+$XUNTER_MIN_SEC = 0.3
+xunter --no-rc -c 'echo 1' ++time-sec-gt 0.1 ++depth-lt 2
+```
+
+#### Convert log to table
 
 ```python
 xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xunter

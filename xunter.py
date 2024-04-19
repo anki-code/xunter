@@ -35,6 +35,7 @@ class CallPrinterProfile(CodePrinter):
 
     locals = defaultdict(list)
     overwrite_stream = None
+    filter_time_sec_gt = None
 
     @classmethod
     def cleanup(cls):
@@ -194,6 +195,7 @@ class StackPrinterProfile(ColorStreamAction):
     """
 
     overwrite_stream = None
+    filter_time_sec_gt = None
 
     def __init__(self, depth=15, limit=2, **options):
         self.limit = limit
@@ -248,8 +250,7 @@ class StackPrinterProfile(ColorStreamAction):
             )
         template += '{RESET}\n'
         if event.kind == 'return':
-            min_sec = float(os.environ.get('XUNTER_MIN_SEC', 0))
-            if delta < min_sec:
+            if self.filter_time_sec_gt and delta < self.filter_time_sec_gt:
                 return
 
             template = template.rstrip() + ' - {}\n'

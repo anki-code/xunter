@@ -15,6 +15,7 @@ def xunter_help():
 
 def argparse_xunter():
     parser = argparse.ArgumentParser(prefix_chars='-+')
+    parser.add_argument('++time-sec-gt', help="Show rows with time in seconds greater than.")
     parser.add_argument('++depth-lt', help="Trace depth. The same as `++filter 'Q(depth_lt=5)'`.")
     parser.add_argument('++printer', default='stack', help="Printer: `stack` or `call`. Default: `stack`.")
     parser.add_argument('++stdlib', action='store_true', help='Trace stdlib. Default: no.')
@@ -65,6 +66,10 @@ if x := argparse_xunter():
             printer.overwrite_stream = sys.stderr
         else:
             printer.overwrite_stream = open(x.output, 'w')
+    if x.time_sec_gt:
+        printer.filter_time_sec_gt = float(x.time_sec_gt)
+        if x.debug:
+            print(f'printer.filter_time_sec_gt={printer.filter_time_sec_gt}')
 
     filters = eval(x.filter)
     if type(filters) is not tuple:
