@@ -13,7 +13,10 @@ jobs:
         python-version: '3.12'
     - name: Install
       run: pip install .
-    - name: Run
+    - name: Test
       run: xunter --help
-    - name: Run
+    - name: Test
       run: xunter --no-rc -c '2+2' ++depth-lt 5 ++output stdout
+    - name: Test
+      run: xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_subproc")' ++output ./echo1.xunter
+      
