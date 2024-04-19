@@ -1,4 +1,13 @@
-a = 1
+"""Some code to play with."""
+
+myint = 1
+
+class PlayWithMe:
+    def __init__(self, name):
+        self.name = name
+
+    def say_hello(self):
+        print(f"Hello {self.name}")
 
 def c():
     import time

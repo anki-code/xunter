@@ -28,7 +28,7 @@ Examples:
 ```xsh
 xunter --no-rc -c "2+2" ++depth-lt 10
 xunter --no-rc ++depth-lt 5 ++output /tmp/22.xunter
-xunter --no-rc -c '2+2' ++filter 'Q(filename_has="main.py")'
+xunter --no-rc -c '2+2' ++filter 'Q(filename_endswith="main.py")'
 
 xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_subproc")'
 # [...]/site-packages/xonsh/procs/specs.py:910:run_subproc 
@@ -44,7 +44,8 @@ xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_
 xunter --no-rc -c 'echo 1' ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
 ```
 To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
-and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html). 
+and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html).
+Use `./playground/trace.py` to experiment with the tracing filters and understand how it works.
 
 ## Convert log to table
 
@@ -53,10 +54,6 @@ xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xunter
 xunter2excel /tmp/22.xunter
 ```
 
-## Investigations
-
-By putting `import ipdb; ipdb.set_trace()` in the any place of code you can investigate the environment interactively.
-
 ## Known issues
 
 If you see the unexpected exceptions try to install xonsh from the main branch first.
@@ -64,3 +61,4 @@ If you see the unexpected exceptions try to install xonsh from the main branch f
 ## See also
 * [xonsh-cheatsheet](https://github.com/anki-code/xonsh-cheatsheet)
 * [xonsh-install](https://github.com/anki-code/xonsh-install)
+* By putting `import ipdb; ipdb.set_trace()` into any place of code you can investigate the environment interactively.
