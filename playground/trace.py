@@ -1,6 +1,7 @@
 import os
-from hunter import trace, StackPrinter
+from hunter import trace
 from xunter import CallPrinterProfile, StackPrinterProfile
+
 trace(
     depth_lt=int(os.environ.get('XUNTER_DEPTH_LT', 20)),
     stdlib=False,
@@ -9,15 +10,7 @@ trace(
 )
 
 
-a = 1
 
-def c():
-    import time
-    time.sleep(3)
-
-def b(cnt):
-    import time
-    time.sleep(cnt)
-    c()
-
-b(2)
+if __name__ == '__main__':
+    from aaa.bbb import b
+    b(2)
