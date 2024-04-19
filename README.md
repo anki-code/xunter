@@ -12,6 +12,7 @@ Install xunter into the environment where xonsh you want to trace resides.
 
 ```xsh
 pip install xunter
+# or: pip install git+https://github.com/anki-code/xunter
 ```
 
 ## Usage
