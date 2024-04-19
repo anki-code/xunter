@@ -11,7 +11,7 @@ If you like the idea click ⭐ on the repo and <a href="https://twitter.com/inte
 Install xunter into the environment where xonsh you want to trace resides.
 
 ```xsh
-pip install git+https://github.com/anki-code/xunter
+pip install xunter
 ```
 
 ## Usage
