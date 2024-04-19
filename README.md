@@ -18,19 +18,23 @@ pip install git+https://github.com/anki-code/xunter
 
 Xunter is working as drop-in replacement of `xonsh` with additional arguments:
 ```xsh
-xunter --help
+xonsh  --no-rc -c "2+2"
+
 xunter --no-rc -c "2+2" ++depth-lt 5
 #      ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^
 #            xonsh         xunter
 
-# Feel free to run interactive session:
-xunter --no-rc ++depth-lt 5
+xunter --no-rc -c "2+2" ++depth-lt 10
+xunter --no-rc ++depth-lt 5 ++output /tmp/22.xunter
+xunter --no-rc -c '2+2' ++filter 'Q(filename_has="main.py")'
 ```
+To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
+and [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html). 
 
 ## Convert log to table
 
 ```python
-xunter --no-rc -c "2+2" ++depth 10 ++output /tmp/22.xunter
+xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xunter
 xunter2excel /tmp/22.xunter
 ```
 

@@ -2,24 +2,25 @@
 
 import sys
 import argparse
-from hunter import trace
+from hunter import trace, Q
 from xunter import CallPrinterProfile, StackPrinterProfile
 
 def xunter_help():
     print('Xunter was made for tracing xonsh via python-hunter.')
-    print('Example: xunter --no-rc -c "2+2" ++depth 10')
-    print('Example: xunter --no-rc ++depth 5 ++output /tmp/22.xunter')
-    print('Example: xunter --no-rc ++stdlib ++depth-lt 5 ++output stdout')
+    print("Example: xunter --no-rc -c '2+2' ++depth-lt 10")
+    print("Example: xunter --no-rc -c '2+2' ++depth-lt 10 ++output /tmp/22.xunter")
+    print("Example: xunter --no-rc -c '2+2' ++depth-lt 10 ++filter 'Q(filename_has=\"main.py\")'")
     print()
+
 
 def argparse_xunter():
     parser = argparse.ArgumentParser(prefix_chars='-+')
-    parser.add_argument('++depth-lt', required=True, help='Trace depth. Start from 5.')
+    parser.add_argument('++depth-lt', help="Trace depth. The same as `++filter 'Q(depth_lt=5)'`.")
     parser.add_argument('++printer', default='stack', help="Printer: `stack` or `call`. Default: `stack`.")
     parser.add_argument('++stdlib', action='store_true', help='Trace stdlib. Default: no.')
     parser.add_argument('++output', default='stderr', help='Output: `stdout`, `stderr` or filepath. Default: `stderr`.')
-    # See also: ('function', 'module', 'lineno', 'globals', 'stdlib', 'arg', 'locals', 'kind', 'filename', 'source', 'fullsource', 'threadname', 'threadid', 'instruction', 'depth', 'calls', 'builtin').
-    # Source: https://python-hunter.readthedocs.io/en/latest/filtering.html
+    parser.add_argument('++filter', default='()', help='Hunter filters: https://python-hunter.readthedocs.io/en/latest/filtering.html')
+    parser.add_argument('++debug', action='store_true', help='Debug mode for xunter.')
 
     if '--help' in sys.argv:
         xunter_help()
@@ -27,17 +28,27 @@ def argparse_xunter():
         print('\nXonsh help:\n')
         return
     elif not len([a for a in sys.argv if a[:2] == '++']):
+        print('You need to set at least one ++ argument e.g `++depth-lt 10`.')
         xunter_help()
         sys.exit(1)
 
+    debug = '++debug' in sys.argv
+
+    if debug:
+        print('Args input:', sys.argv, file=sys.stderr)
+
     args, left = parser.parse_known_args()
     sys.argv = sys.argv[:1]+left
+
+    if debug:
+        print('Args to xonsh:', sys.argv, file=sys.stderr)
+
     return args
 
 if x := argparse_xunter():
     for a in sys.argv:
         if a[:2] == '++':
-            print(f'Unknown argument: {a}')
+            print(f'Unknown xunter argument: {a}')
             sys.exit(1)
 
     if x.printer == 'call':
@@ -55,12 +66,22 @@ if x := argparse_xunter():
         else:
             printer.overwrite_stream = open(x.output, 'w')
 
+    filters = eval(x.filter)
+    if type(filters) is not tuple:
+        filters = (filters, )
+
+    if x.depth_lt:
+        filters = filters + (Q(depth_lt=int(x.depth_lt)),)
+
+    if x.debug:
+        print('Filters:', filters, file=sys.stderr)
+
     trace(
+        *filters,
         action=printer,
-        depth_lt=int(x.depth_lt),
         stdlib=x.stdlib
     )
-
+# exit()
 # From `cat @$(which xonsh)`:
 import re
 import sys
