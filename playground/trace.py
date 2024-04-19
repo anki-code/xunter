@@ -23,8 +23,8 @@ trace(
 if __name__ == '__main__':
     print('start')
 
-    from aaa.bbb import b
-    b(2)
+    from aaa.bbb import wait
+    wait(2)
 
     from aaa.bbb import PlayWithMe
     pw = PlayWithMe('Bar')

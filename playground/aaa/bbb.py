@@ -9,11 +9,13 @@ class PlayWithMe:
     def say_hello(self):
         print(f"Hello {self.name}")
 
-def c():
+def wait3():
     import time
+    print('Wait 3')
     time.sleep(3)
 
-def b(cnt):
+def wait(cnt):
     import time
+    print(f'Wait {cnt}')
     time.sleep(cnt)
-    c()
+    wait3()
