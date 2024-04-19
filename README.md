@@ -43,7 +43,7 @@ xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_
 xunter --no-rc -c 'echo 1' ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
 ```
 To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
-and [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html). 
+and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html). 
 
 ## Convert log to table
 
