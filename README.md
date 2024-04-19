@@ -77,8 +77,8 @@ tail -f /tmp/1.xunter  # | grep -i func
 #### Time profiling
 
 ```xsh
-$XUNTER_MIN_SEC = 0.3
 xunter --no-rc -c 'echo 1' ++time-sec-gt 0.1 ++depth-lt 2
+# ... - time_sec=[1.3710]
 ```
 
 #### Convert log to table
