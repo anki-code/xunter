@@ -24,12 +24,19 @@ xunter --no-rc -c "2+2" ++depth-lt 5
 #      ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^
 #            xonsh         xunter
 ```
-Examples:
+Simple examples:
 ```xsh
 xunter --no-rc -c "2+2" ++depth-lt 10
 xunter --no-rc ++depth-lt 5 ++output /tmp/22.xunter
 xunter --no-rc -c '2+2' ++filter 'Q(filename_endswith="main.py")'
+```
+To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
+and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html).
+Use `./playground/trace.py` to experiment with the tracing filters and understand how it works.
 
+#### Find function calls
+
+```xsh
 xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_subproc")'
 # [...]/site-packages/xonsh/procs/specs.py:910:run_subproc 
 #   <= xonsh/built_ins.py:206:subproc_captured_hiddenobject 
@@ -43,9 +50,29 @@ xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_
 # Don't forget about xonsh`s awesome macro call:
 xunter --no-rc -c 'echo 1' ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
 ```
-To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
-and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html).
-Use `./playground/trace.py` to experiment with the tracing filters and understand how it works.
+
+#### Filter code from prompt-toolkit and unwanted libs
+
+```xsh
+# These `filename` filters will be applied to the code that executed at the end.
+# i.e. `filename="a.py"` will filter `a.py:func <= b.py:func <= c.py:func`
+# but `c.py:func <= a.py:func <= b.py:func` case (`a.py` in the middle) wont be filtered.
+filters = [
+    '~Q(filename_has="prompt_toolkit/")',
+    '~Q(filename_has="prompt/")',
+    '~Q(filename_has="ptk_shell/")',
+    '~Q(filename_has="pygments")',
+    
+    '~Q(filename_has="_distutils_hack")',
+    '~Q(filename_has="lazyasd")',
+    '~Q(filename_has="environ")',
+    '~Q(filename_has="layout")',
+]
+
+xunter --no-rc  ++filter @(','.join(filters)) ++output /tmp/1.xunter
+# Run in another terminal to monitor the activity:
+tail -f /tmp/1.xunter  # | grep -i func
+```
 
 ## Convert log to table
 
