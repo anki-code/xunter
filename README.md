@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">  
-If you like the idea click ⭐ on the repo and <a href="https://twitter.com/intent/tweet?text=Nice%20prompt%20for%20the%20xonsh%20shell!&url=https://github.com/anki-code/xontrib-xontrib-prompt-starship" target="_blank">tweet</a>.
+If you like the idea click ⭐ on the repo and <a href="https://twitter.com/intent/tweet?text=Trace%20xonsh%20shell%20code!&url=https://github.com/anki-code/xunter" target="_blank">tweet</a>.
 </p>
 
 ## Install
@@ -19,11 +19,12 @@ pip install git+https://github.com/anki-code/xunter
 Xunter is working as drop-in replacement of `xonsh` with additional arguments:
 ```xsh
 xonsh  --no-rc -c "2+2"
-
 xunter --no-rc -c "2+2" ++depth-lt 5
 #      ^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^
 #            xonsh         xunter
-
+```
+Examples:
+```
 xunter --no-rc -c "2+2" ++depth-lt 10
 xunter --no-rc ++depth-lt 5 ++output /tmp/22.xunter
 xunter --no-rc -c '2+2' ++filter 'Q(filename_has="main.py")'
