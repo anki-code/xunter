@@ -38,6 +38,9 @@ xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py"),Q(function="run_
 #   <= xonsh/main.py:470:main 
 #   <= xunter/xunter:91:<module>
 #   - time_sec=[0.1505]
+
+# Don't forget about xonsh`s awesome macro call:
+xunter --no-rc -c 'echo 1' ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
 ```
 To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
 and [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html). 
