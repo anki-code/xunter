@@ -62,5 +62,5 @@ By putting `import ipdb; ipdb.set_trace()` in the any place of code you can inve
 If you see the unexpected exceptions try to install xonsh from the main branch first.
 
 ## See also
-
+* [xonsh-cheatsheet](https://github.com/anki-code/xonsh-cheatsheet)
 * [xonsh-install](https://github.com/anki-code/xonsh-install)
