@@ -49,7 +49,7 @@ cat /tmp/specs.xunter
 #   - time_sec=[0.1505]
 
 # Don't forget about xonsh`s awesome macro call:
-xunter --no-rc -c 'echo 1' ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
+xunter --no-rc -c 'echo 1' ++printer call ++filter! Q(filename_has="specs.py"),Q(function="run_subproc")
 ```
 
 #### Filter code from prompt-toolkit and unwanted libs
