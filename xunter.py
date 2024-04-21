@@ -47,7 +47,7 @@ class CallPrinterProfile(CodePrinter):
         # </profile>
 
         if self.overwrite_stream:
-            args['stream'] = self.overwrite_stream
+            kwargs['stream'] = self.overwrite_stream
 
         super(CallPrinterProfile, self).__init__(*args, **kwargs)
 
