@@ -38,7 +38,7 @@ Use `./playground/trace.py` to experiment with the tracing filters and understan
 
 ```xsh
 xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py")' ++output /tmp/specs.xunter
-cat /tmp/specs.xunter
+cat /tmp/specs.xunter | grep run_subproc
 # [...]/site-packages/xonsh/procs/specs.py:910:run_subproc 
 #   <= xonsh/built_ins.py:206:subproc_captured_hiddenobject 
 #   <= <string>:1:<module> <= xonsh/codecache.py:64:run_compiled_code 
