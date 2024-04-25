@@ -56,7 +56,7 @@ if x := argparse_xunter():
             sys.exit(1)
 
     if x.cwd:
-        sys.path.append(os.getcwd())
+        sys.path.insert(0, os.getcwd())
 
     if x.printer == 'call':
         printer = CallPrinterProfile

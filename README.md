@@ -38,7 +38,6 @@ Use `./playground/trace.py` to experiment with the tracing filters and understan
 
 ```xsh
 mkdir -p ~/git/ && cd ~/git/
-# pip uninstall xonsh
 git clone git+https://github.com/xonsh/xonsh
 cd xonsh
 xunter --no-rc -c '1+1' ++cwd
