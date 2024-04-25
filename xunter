@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import sys
 import argparse
 from hunter import trace, Q
@@ -8,6 +9,7 @@ from xunter import CallPrinterProfile, StackPrinterProfile
 def xunter_help():
     print('Xunter was made for tracing xonsh via python-hunter.')
     print("Example: xunter --no-rc -c '2+2' ++depth-lt 10")
+    print("Example: git clone xonsh; cd xonsh; xunter --no-rc -c '2+2' ++depth-lt 10 ++cwd")
     print("Example: xunter --no-rc -c '2+2' ++depth-lt 10 ++output /tmp/22.xunter")
     print("Example: xunter --no-rc -c '2+2' ++depth-lt 10 ++filter 'Q(filename_has=\"main.py\")'")
     print()
@@ -15,6 +17,7 @@ def xunter_help():
 
 def argparse_xunter():
     parser = argparse.ArgumentParser(prefix_chars='-+')
+    parser.add_argument('++cwd', action='store_true', help='Append current working directory to PATH.')
     parser.add_argument('++time-sec-gt', help="Show rows with time in seconds greater than.")
     parser.add_argument('++depth-lt', help="Trace depth. The same as `++filter 'Q(depth_lt=5)'`.")
     parser.add_argument('++printer', default='stack', help="Printer: `stack` or `call`. Default: `stack`.")
@@ -52,6 +55,9 @@ if x := argparse_xunter():
             print(f'Unknown xunter argument: {a}')
             sys.exit(1)
 
+    if x.cwd:
+        sys.path.append(os.getcwd())
+
     if x.printer == 'call':
         printer = CallPrinterProfile
     elif x.printer == 'stack':
@@ -86,7 +92,7 @@ if x := argparse_xunter():
         action=printer,
         stdlib=x.stdlib
     )
-# exit()
+
 # From `cat @$(which xonsh)`:
 import re
 import sys

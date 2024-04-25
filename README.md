@@ -34,6 +34,17 @@ To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/l
 and take a look into the [cookbook](https://python-hunter.readthedocs.io/en/latest/cookbook.html).
 Use `./playground/trace.py` to experiment with the tracing filters and understand how it works.
 
+#### Trace xonsh in the current directory
+
+```xsh
+mkdir -p ~/git/ && cd ~/git/
+# pip uninstall xonsh
+git clone git+https://github.com/xonsh/xonsh
+cd xonsh
+xunter --no-rc -c '1+1' ++cwd
+# Trace ./xonsh
+```
+
 #### Find function calls
 
 ```xsh
