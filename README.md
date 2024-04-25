@@ -98,3 +98,4 @@ If you see the unexpected exceptions try to install xonsh from the main branch f
 * [xonsh-install](https://github.com/anki-code/xonsh-install)
 * [How to debug xonsh interactively in IDE PyCharm](https://github.com/xonsh/xonsh/issues/3090#issuecomment-2068043223)
 * By putting `import ipdb; ipdb.set_trace()` into any place of code you can investigate the environment interactively.
+* xonsh builtin [`trace`](https://xon.sh/aliases.html#trace)
