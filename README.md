@@ -27,7 +27,7 @@ xunter --no-rc -c "2+2" ++depth-lt 5
 Simple examples:
 ```xsh
 xunter --no-rc -c "2+2" ++depth-lt 10
-xunter --no-rc ++depth-lt 5 ++output /tmp/22.xunter
+xunter --no-rc ++depth-lt 5 ++output /tmp/22.xun
 xunter --no-rc -c '2+2' ++filter 'Q(filename_endswith="main.py")'
 ```
 To set `++filter` read about [filters](https://python-hunter.readthedocs.io/en/latest/filtering.html) 
@@ -40,15 +40,15 @@ Use `./playground/trace.py` to experiment with the tracing filters and understan
 mkdir -p ~/git/ && cd ~/git/
 git clone git+https://github.com/xonsh/xonsh
 cd xonsh
-xunter --no-rc -c '1+1' ++cwd
+xunter --no-rc -c '1+1' ++cwd ++filter 'Q(filename_has="procs/") ++output /tmp/out.xun
 # Trace ./xonsh
 ```
 
 #### Find function calls
 
 ```xsh
-xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py")' ++output /tmp/specs.xunter
-cat /tmp/specs.xunter | grep run_subproc
+xunter --no-rc -c 'echo 1' ++filter 'Q(filename_has="specs.py")' ++output /tmp/specs.xun
+cat /tmp/specs.xun | grep run_subproc
 # [...]/site-packages/xonsh/procs/specs.py:910:run_subproc 
 #   <= xonsh/built_ins.py:206:subproc_captured_hiddenobject 
 #   <= <string>:1:<module> <= xonsh/codecache.py:64:run_compiled_code 
@@ -80,9 +80,9 @@ filters = [
     '~Q(filename_has="layout")',
 ]
 
-xunter --no-rc  ++filter @(','.join(filters)) ++output /tmp/1.xunter
+xunter --no-rc  ++filter @(','.join(filters)) ++output /tmp/1.xun
 # Run in another terminal to monitor the activity:
-tail -f /tmp/1.xunter  # | grep -i func
+tail -f /tmp/1.xun  # | grep -i func
 ```
 
 #### Time profiling
@@ -95,8 +95,8 @@ xunter --no-rc -c 'echo 1' ++time-sec-gt 0.1 ++depth-lt 2
 #### Convert log to table
 
 ```python
-xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xunter
-xunter2excel /tmp/22.xunter
+xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xun
+xunter2excel /tmp/22.xun
 ```
 
 ## Known issues
