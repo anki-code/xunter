@@ -40,8 +40,10 @@ Use `./playground/trace.py` to experiment with the tracing filters and understan
 mkdir -p ~/git/ && cd ~/git/
 git clone git+https://github.com/xonsh/xonsh
 cd xonsh
-xunter --no-rc -c '1+1' ++cwd ++filter 'Q(filename_has="procs/") ++output /tmp/out.xun
+xunter --no-rc -c '1+1' ++cwd ++filter 'Q(filename_has="procs/")' ++output /tmp/out.xun
 # Trace ./xonsh
+# In another terminal:
+tail -f /tmp/out.xun
 ```
 
 #### Find function calls
