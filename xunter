@@ -20,9 +20,9 @@ def argparse_xunter():
     parser.add_argument('++cwd', action='store_true', help='Append current working directory to PATH.')
     parser.add_argument('++time-sec-gt', help="Show rows with time in seconds greater than.")
     parser.add_argument('++depth-lt', help="Trace depth. The same as `++filter 'Q(depth_lt=5)'`.")
-    parser.add_argument('++printer', default='stack', help="Printer: `stack` or `call`. Default: `stack`.")
+    parser.add_argument('++printer', default=os.environ.get('XUNTER_PRINTER', 'stack'), help="Printer: `stack` or `call`. Default: `stack`.")
     parser.add_argument('++stdlib', action='store_true', help='Trace stdlib. Default: no.')
-    parser.add_argument('++output', default='stderr', help='Output: `stdout`, `stderr` or filepath. Default: `stderr`.')
+    parser.add_argument('++output', default=os.environ.get('XUNTER_OUTPUT', 'stderr'), help='Output: `stdout`, `stderr` or filepath. Default: `stderr`.')
     parser.add_argument('++filter', default='()', help='Hunter filters: https://python-hunter.readthedocs.io/en/latest/filtering.html')
     parser.add_argument('++debug', action='store_true', help='Debug mode for xunter.')
 
@@ -31,10 +31,6 @@ def argparse_xunter():
         parser.print_help()
         print('\nXonsh help:\n')
         return
-    elif not len([a for a in sys.argv if a[:2] == '++']):
-        print('You need to set at least one ++ argument e.g `++depth-lt 10`.')
-        xunter_help()
-        sys.exit(1)
 
     debug = '++debug' in sys.argv
 
