@@ -103,7 +103,12 @@ xunter2excel /tmp/22.xun
 
 ## Known issues
 
-If you see the unexpected exceptions try to install xonsh from the main branch first.
+If you see the unexpected exceptions try to install xonsh from the main branch first:
+```xsh
+xpip install -U --force-reinstall git+https://github.com/xonsh/xonsh
+# restart xonsh
+xunter #...
+```
 
 ## See also
 * [xonsh-cheatsheet](https://github.com/anki-code/xonsh-cheatsheet)
