@@ -107,7 +107,7 @@ If you see the unexpected exceptions try to install xonsh from the main branch f
 ```xsh
 xpip install -U --force-reinstall git+https://github.com/xonsh/xonsh
 # restart xonsh
-xunter ++output /tmp/log.xun
+xunter ++output /tmp/xonsh.xun
 ```
 
 ## See also
