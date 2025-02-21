@@ -104,6 +104,8 @@ xunter2excel /tmp/22.xun
 ## Case studying
 
 * https://github.com/xonsh/xonsh/issues/5244#issuecomment-2183954013
+* https://github.com/xonsh/xonsh/pull/5361
+* https://github.com/xonsh/xonsh/issues/5317#issuecomment-2031846418
 
 ## Known issues
 
