@@ -101,6 +101,10 @@ xunter --no-rc -c "2+2" ++depth-lt 10 ++printer stack ++output /tmp/22.xun
 xunter2excel /tmp/22.xun
 ```
 
+## Case studying
+
+* https://github.com/xonsh/xonsh/issues/5244#issuecomment-2183954013
+
 ## Known issues
 
 If you see the unexpected exceptions try to install xonsh from the main branch first:
