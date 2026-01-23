@@ -117,6 +117,7 @@ xunter ++output /tmp/xonsh.xun
 ```
 
 ## See also
+* [samply](https://github.com/mstange/samply) - Command-line sampling profiler.
 * [xonsh-cheatsheet](https://github.com/anki-code/xonsh-cheatsheet)
 * [xonsh-install](https://github.com/anki-code/xonsh-install)
 * [How to debug xonsh interactively in IDE PyCharm](https://github.com/xonsh/xonsh/issues/3090#issuecomment-2068043223)
